@@ -6,6 +6,9 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23F4F1EA%22%2F%3E%0A%3Cpath%20d%3D%22M10%2014h34v9H31v27H21V23H10z%22%20fill%3D%22%231B1B1B%22%2F%3E%0A%3Ccircle%20cx%3D%2249%22%20cy%3D%2245%22%20r%3D%227%22%20fill%3D%22%23FF5184%22%2F%3E%0A%3C%2Fsvg%3E" type="image/svg+xml" />
   <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23F4F1EA%22%2F%3E%0A%3Cpath%20d%3D%22M10%2014h34v9H31v27H21V23H10z%22%20fill%3D%22%231B1B1B%22%2F%3E%0A%3Ccircle%20cx%3D%2249%22%20cy%3D%2245%22%20r%3D%227%22%20fill%3D%22%23FF5184%22%2F%3E%0A%3C%2Fsvg%3E" />
   <meta name="theme-color" content="#F4F1EA" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,400;1,700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
   <title>ТУТ ВСЕ · ивент сообщество</title>
   <meta name="description" content="ТУТ ВСЕ — комьюнити и медиа для людей, которые делают события. Знакомимся, делимся опытом, находим своих и оказываемся друг другу вовремя." />
   <style>
@@ -39,8 +42,8 @@
     button{cursor:pointer}
     .wrap{width:min(1240px, calc(100% - 40px)); margin:0 auto}
     .mono{font-family:"JetBrains Mono","Courier New",monospace; letter-spacing:.04em}
-    .display{font-family:"Arial Black",Inter,Arial,sans-serif; letter-spacing:-.055em}
-    .serif{font-family:Georgia,"Times New Roman",serif; font-style:italic; font-weight:400}
+    .display{font-family:Unbounded,Inter,Arial,sans-serif; font-weight:800; letter-spacing:-.055em}
+    .serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif; font-style:italic; font-weight:400}
 
     .site-header{
       position:sticky; top:0; z-index:50;
@@ -261,7 +264,7 @@
     .legacy h2{
       margin:0 0 24px;
       max-width:620px;
-      font-family:"CSTM Xprmntl 02","Arial Black",Inter,Arial,sans-serif;
+      font-family:Unbounded,Inter,Arial,sans-serif;
       font-size:clamp(46px,5.2vw,76px);
       line-height:.98;
       letter-spacing:-.055em;
@@ -365,8 +368,9 @@
       right:1%;
       top:10px;
       width:210px;
-      font-family:Georgia,"Times New Roman",serif;
+      font-family:"Playfair Display",Georgia,"Times New Roman",serif;
       font-style:italic;
+      font-weight:700;
       font-size:22px;
       line-height:1.15;
       color:#7E5EE8;
@@ -392,16 +396,17 @@
       height:150px;
       border-radius:50%;
       border:8px solid rgba(255,255,255,.86);
-      background:radial-gradient(circle at 35% 30%,#FFFFFF 0,#F0F0F0 68%,#D8D8D8 100%);
-      display:grid;
-      place-items:center;
-      color:#E54A2C;
-      font-family:"Arial Narrow",Arial,sans-serif;
-      font-weight:900;
-      font-size:25px;
+      overflow:hidden;
       transform:rotate(2deg);
       box-shadow:0 12px 30px rgba(27,27,27,.12);
       z-index:5;
+      background:#fff;
+    }
+    .legacy-avatar img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
     }
     .legacy-logo-tile{
       position:absolute;
@@ -418,15 +423,12 @@
       z-index:4;
       transform:rotate(2deg);
     }
-    .legacy-logo-tile span{
-      font-family:"Arial Black",Inter,Arial,sans-serif;
-      font-size:58px;
-      line-height:.75;
-      letter-spacing:-.08em;
-      background:linear-gradient(180deg,var(--coral) 0 45%,var(--pink) 45% 100%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+    .legacy-logo-tile img{
+      display:block;
+      width:72%;
+      height:auto;
+      max-height:76%;
+      object-fit:contain;
     }
     .legacy-bubble{
       position:absolute;
@@ -451,16 +453,16 @@
     }
     .legacy-hand{
       position:absolute;
-      right:3%;
-      bottom:8px;
-      font-family:Georgia,"Times New Roman",serif;
-      font-style:italic;
-      color:#7E5EE8;
-      font-size:22px;
-      line-height:1.1;
-      transform:rotate(-7deg);
-      text-align:right;
+      right:0;
+      bottom:2px;
+      width:235px;
+      transform:rotate(-5deg);
       z-index:6;
+    }
+    .legacy-hand img{
+      display:block;
+      width:100%;
+      height:auto;
     }
 
     @media (max-width:980px){
@@ -491,9 +493,9 @@
       .legacy-avatar-note{right:0;top:5px;width:160px;font-size:17px}
       .legacy-avatar{right:0;top:170px;width:112px;height:112px;border-width:6px;font-size:19px}
       .legacy-logo-tile{left:2%;bottom:24px;width:200px;height:165px}
-      .legacy-logo-tile span{font-size:44px}
+      .legacy-logo-tile img{width:74%}
       .legacy-bubble{right:0;bottom:86px;width:190px;padding:16px;font-size:13px}
-      .legacy-hand{font-size:17px}
+      .legacy-hand{width:190px}
 
       .nav{min-height:66px}
       .nav-links .pill{padding:11px 14px;font-size:12px}
@@ -596,11 +598,11 @@
         </div>
 
         <div class="legacy-avatar-note">возможно, вы знаете нас по этому чату</div>
-        <div class="legacy-avatar">РАБОТАЕМ!</div>
+        <div class="legacy-avatar"><img src="assets/working-avatar.svg" alt="Старая аватарка чата «Тут все»: РАБОТАЕМ!"></div>
 
-        <div class="legacy-logo-tile"><span>ТУТ<br>ВСЕ</span></div>
+        <div class="legacy-logo-tile"><img src="assets/tutvse-logo.svg" alt="ТУТ ВСЕ"></div>
         <div class="legacy-bubble">Не флудим, не спамим, помогаем друг другу!</div>
-        <div class="legacy-hand">люди<br>события<br>возможности ♥</div>
+        <div class="legacy-hand"><img src="assets/people-events-opportunities.svg" alt="люди, события, возможности"></div>
       </div>
     </div>
   </section>
