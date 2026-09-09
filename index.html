@@ -233,8 +233,242 @@
     .generated pre{white-space:pre-wrap;margin:0;font:13px/1.5 "JetBrains Mono","Courier New",monospace}
     .generated-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 
+
+    /* BRAND BOOK · WHO WE ARE */
+    .legacy{
+      background:var(--cream);
+      position:relative;
+      overflow:hidden;
+    }
+    .legacy-grid{
+      display:grid;
+      grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+      gap:64px;
+      align-items:center;
+    }
+    .legacy-label{
+      display:inline-flex;
+      align-items:center;
+      min-height:38px;
+      padding:0 18px;
+      border-radius:999px;
+      background:#FFC9C8;
+      font:500 12px/1 "JetBrains Mono","Courier New",monospace;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      margin-bottom:24px;
+    }
+    .legacy h2{
+      margin:0 0 24px;
+      max-width:620px;
+      font-family:"CSTM Xprmntl 02","Arial Black",Inter,Arial,sans-serif;
+      font-size:clamp(46px,5.2vw,76px);
+      line-height:.98;
+      letter-spacing:-.055em;
+    }
+    .legacy-copy{
+      max-width:620px;
+      font-size:20px;
+      line-height:1.45;
+      margin:0;
+    }
+    .legacy-callout{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      margin-top:28px;
+      padding:14px 22px;
+      border-radius:999px;
+      background:#FFE5EA;
+      font-weight:700;
+    }
+    .legacy-callout:before{
+      content:"✦";
+      color:var(--pink);
+      font-size:22px;
+    }
+    .legacy-art{
+      min-height:560px;
+      position:relative;
+    }
+    .legacy-coral{
+      position:absolute;
+      width:330px;
+      height:270px;
+      left:2%;
+      top:54px;
+      border-radius:72px 72px 72px 12px;
+      background:var(--coral);
+      transform:rotate(-5deg);
+    }
+    .legacy-pink{
+      position:absolute;
+      width:360px;
+      height:240px;
+      right:0;
+      top:245px;
+      border-radius:120px 24px 24px 120px;
+      background:var(--pink);
+      opacity:.92;
+    }
+    .legacy-chat-card{
+      position:absolute;
+      width:min(420px,74%);
+      left:12%;
+      top:86px;
+      padding:22px 24px;
+      border:1px solid rgba(27,27,27,.12);
+      border-radius:28px;
+      background:rgba(255,255,255,.96);
+      box-shadow:0 18px 55px rgba(27,27,27,.10);
+      transform:rotate(-4deg);
+      z-index:3;
+    }
+    .legacy-chat-meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:14px;
+    }
+    .legacy-avatars{
+      display:flex;
+      align-items:center;
+    }
+    .legacy-avatars span{
+      width:44px;
+      height:44px;
+      margin-right:-8px;
+      border-radius:50%;
+      border:3px solid white;
+      background:linear-gradient(145deg,#F4F1EA,#BDBDBD);
+    }
+    .legacy-avatars span:nth-child(2){background:linear-gradient(145deg,#FFC9C8,#FF5184)}
+    .legacy-avatars span:nth-child(3){background:linear-gradient(145deg,#C5B4F0,#182142)}
+    .legacy-count{
+      padding:8px 12px;
+      border-radius:999px;
+      background:var(--cream);
+      font-size:13px;
+    }
+    .legacy-chat-card strong{
+      display:block;
+      font-size:22px;
+      margin-bottom:8px;
+    }
+    .legacy-chat-card p{
+      margin:0;
+      font-size:15px;
+    }
+    .legacy-avatar-note{
+      position:absolute;
+      right:1%;
+      top:10px;
+      width:210px;
+      font-family:Georgia,"Times New Roman",serif;
+      font-style:italic;
+      font-size:22px;
+      line-height:1.15;
+      color:#7E5EE8;
+      transform:rotate(-5deg);
+      text-align:center;
+      z-index:5;
+    }
+    .legacy-avatar-note:after{
+      content:"↘";
+      display:block;
+      font-family:Inter,Arial,sans-serif;
+      font-style:normal;
+      font-size:52px;
+      line-height:.8;
+      margin-top:6px;
+      transform:rotate(8deg);
+    }
+    .legacy-avatar{
+      position:absolute;
+      right:4%;
+      top:165px;
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      border:8px solid rgba(255,255,255,.86);
+      background:radial-gradient(circle at 35% 30%,#FFFFFF 0,#F0F0F0 68%,#D8D8D8 100%);
+      display:grid;
+      place-items:center;
+      color:#E54A2C;
+      font-family:"Arial Narrow",Arial,sans-serif;
+      font-weight:900;
+      font-size:25px;
+      transform:rotate(2deg);
+      box-shadow:0 12px 30px rgba(27,27,27,.12);
+      z-index:5;
+    }
+    .legacy-logo-tile{
+      position:absolute;
+      left:16%;
+      bottom:18px;
+      width:270px;
+      height:220px;
+      border-radius:28px;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(27,27,27,.10);
+      display:grid;
+      place-items:center;
+      box-shadow:0 14px 42px rgba(27,27,27,.08);
+      z-index:4;
+      transform:rotate(2deg);
+    }
+    .legacy-logo-tile span{
+      font-family:"Arial Black",Inter,Arial,sans-serif;
+      font-size:58px;
+      line-height:.75;
+      letter-spacing:-.08em;
+      background:linear-gradient(180deg,var(--coral) 0 45%,var(--pink) 45% 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .legacy-bubble{
+      position:absolute;
+      right:0;
+      bottom:84px;
+      width:250px;
+      padding:20px 22px;
+      border-radius:24px;
+      background:white;
+      border:1px solid rgba(27,27,27,.10);
+      font-size:16px;
+      transform:rotate(-5deg);
+      z-index:5;
+    }
+    .legacy-bubble:after{
+      content:"♥";
+      position:absolute;
+      right:14px;
+      top:10px;
+      color:var(--pink);
+      font-size:20px;
+    }
+    .legacy-hand{
+      position:absolute;
+      right:3%;
+      bottom:8px;
+      font-family:Georgia,"Times New Roman",serif;
+      font-style:italic;
+      color:#7E5EE8;
+      font-size:22px;
+      line-height:1.1;
+      transform:rotate(-7deg);
+      text-align:right;
+      z-index:6;
+    }
+
     @media (max-width:980px){
       .nav-links a:not(.pill){display:none}
+
+      .legacy-grid{grid-template-columns:1fr}
+      .legacy-art{min-height:510px}
+
       .hero-grid,.people-grid,.closing-grid{grid-template-columns:1fr}
       .art{min-height:430px}
       .why-grid{grid-template-columns:1fr}
@@ -247,6 +481,20 @@
     }
     @media (max-width:680px){
       .wrap{width:min(100% - 24px,1240px)}
+
+      .legacy h2{font-size:46px}
+      .legacy-copy{font-size:17px}
+      .legacy-art{min-height:470px}
+      .legacy-coral{width:250px;height:215px;left:0;top:70px}
+      .legacy-pink{width:250px;height:185px;top:250px}
+      .legacy-chat-card{width:78%;left:2%;top:95px;padding:18px}
+      .legacy-avatar-note{right:0;top:5px;width:160px;font-size:17px}
+      .legacy-avatar{right:0;top:170px;width:112px;height:112px;border-width:6px;font-size:19px}
+      .legacy-logo-tile{left:2%;bottom:24px;width:200px;height:165px}
+      .legacy-logo-tile span{font-size:44px}
+      .legacy-bubble{right:0;bottom:86px;width:190px;padding:16px;font-size:13px}
+      .legacy-hand{font-size:17px}
+
       .nav{min-height:66px}
       .nav-links .pill{padding:11px 14px;font-size:12px}
       .hero{padding:44px 0 46px;min-height:auto}
@@ -324,6 +572,39 @@
     </div>
   </section>
 
+
+  <section class="legacy" id="who-we-are">
+    <div class="wrap legacy-grid">
+      <div>
+        <div class="legacy-label">кто мы</div>
+        <h2>Если вы знали нас по чату, да, это мы</h2>
+        <p class="legacy-copy">«Тут все» — ивент-сообщество, которое многие знают по одноимённому чату. Теперь у нас появился сайт: чтобы проще знакомиться, оставлять заявки и находить нужных людей. Внутри всё по-прежнему: сильные контакты, рекомендации, помощь друг другу и живая модерация.</p>
+        <div class="legacy-callout">Те же «Тут все», только удобнее.</div>
+      </div>
+
+      <div class="legacy-art" aria-label="История сообщества Тут все">
+        <div class="legacy-coral"></div>
+        <div class="legacy-pink"></div>
+
+        <div class="legacy-chat-card">
+          <div class="legacy-chat-meta">
+            <div class="legacy-avatars"><span></span><span></span><span></span></div>
+            <div class="legacy-count">3K+ участников</div>
+          </div>
+          <strong>Продюсеры, креаторы, режиссёры, менеджеры...</strong>
+          <p>Люди из event и marcom, которые помогают друг другу находить людей, решения и контакты.</p>
+        </div>
+
+        <div class="legacy-avatar-note">возможно, вы знаете нас по этому чату</div>
+        <div class="legacy-avatar">РАБОТАЕМ!</div>
+
+        <div class="legacy-logo-tile"><span>ТУТ<br>ВСЕ</span></div>
+        <div class="legacy-bubble">Не флудим, не спамим, помогаем друг другу!</div>
+        <div class="legacy-hand">люди<br>события<br>возможности ♥</div>
+      </div>
+    </div>
+  </section>
+
   <section id="about">
     <div class="wrap">
       <h2 class="section-title display">Зачем сюда приходят</h2>
@@ -358,7 +639,7 @@
         </article>
         <article class="feature">
           <div class="feature-top mini-pattern"><span></span><span></span><span></span></div>
-          <div class="feature-body"><h3>Медиа</h3><p>Люди, кейсы, события и то, что происходит в индустрии.</p><span class="more">→</span></div>
+          <div class="feature-body"><h3>Контакты</h3><p>Люди, роли и связи, которые помогают быстро находить нужного человека.</p><span class="more">→</span></div>
         </article>
         <article class="feature" id="partners">
           <div class="feature-top"></div>
