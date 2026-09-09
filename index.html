@@ -583,7 +583,7 @@
 
   const APPLICATION_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwbZtpR9z-Gq9WGv2DJ1gloUBmzZjIHxH5erYHS5GOUzvCAWXwIMGQM5mwD2WllisLSFw/exec';
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -592,12 +592,26 @@
     submitBtn.textContent = 'Отправляем…';
 
     const data = new FormData(form);
-    const payload = {
-      route: data.get('route'),
-      name: data.get('name'),
-      telegram: data.get('telegram'),
-      email: data.get('email'),
-      role: data.get('role'),
+
+    const iframeName = 'tutvse_submit_' + Date.now();
+    const iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.style.display = 'none';
+    iframe.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(iframe);
+
+    const postForm = document.createElement('form');
+    postForm.method = 'POST';
+    postForm.action = APPLICATION_ENDPOINT;
+    postForm.target = iframeName;
+    postForm.style.display = 'none';
+
+    const fields = {
+      route: data.get('route') || '',
+      name: data.get('name') || '',
+      telegram: data.get('telegram') || '',
+      email: data.get('email') || '',
+      role: data.get('role') || '',
       recommender: data.get('recommender') || '',
       portfolio: data.get('portfolio') || '',
       about: data.get('about') || '',
@@ -605,24 +619,49 @@
       website: ''
     };
 
-    try {
-      await fetch(APPLICATION_ENDPOINT, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload),
-        keepalive: true
-      });
+    Object.entries(fields).forEach(([name, value]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      input.value = value;
+      postForm.appendChild(input);
+    });
 
-      form.style.display = 'none';
-      generatedBlock.style.display = 'block';
-    } catch (error) {
-      console.error(error);
-      alert('Не получилось отправить заявку. Попробуйте ещё раз чуть позже.');
-    } finally {
+    document.body.appendChild(postForm);
+
+    let submitted = false;
+    let finished = false;
+
+    const finishSuccess = () => {
+      if (finished) return;
+      finished = true;
+
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
-    }
+      form.style.display = 'none';
+      generatedBlock.style.display = 'block';
+
+      setTimeout(() => {
+        postForm.remove();
+        iframe.remove();
+      }, 500);
+    };
+
+    iframe.addEventListener('load', () => {
+      if (submitted) {
+        finishSuccess();
+      }
+    });
+
+    submitted = true;
+    postForm.submit();
+
+    // Запасной таймер: некоторые браузеры не отдают load после внешнего redirect.
+    setTimeout(() => {
+      if (!finished) {
+        finishSuccess();
+      }
+    }, 3500);
   });
 
   document.getElementById('closeSuccess').addEventListener('click', () => {
