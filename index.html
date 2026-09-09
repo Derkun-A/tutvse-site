@@ -58,6 +58,16 @@
       display:inline-flex; align-items:flex-end; gap:7px;
       font-weight:900; line-height:.72; font-size:24px; letter-spacing:-.06em;
     }
+    .brand-love{
+      display:inline-flex;
+      align-items:center;
+      flex:none;
+    }
+    .brand-love img{
+      display:block;
+      width:168px;
+      height:auto;
+    }
     .logo .dot{width:12px;height:12px;border-radius:50%;background:var(--pink);margin-bottom:1px}
     .nav-links{display:flex;gap:26px;align-items:center;font-size:14px}
     .pill{
@@ -82,6 +92,15 @@
       margin:0;
       font-size:clamp(68px,10vw,148px);
       line-height:.82; text-transform:uppercase;
+    }
+    .hero-logo{
+      width:min(560px,88%);
+      margin:28px 0 22px;
+    }
+    .hero-logo img{
+      display:block;
+      width:100%;
+      height:auto;
     }
     .hero-line{
       display:flex;align-items:center;gap:14px;flex-wrap:wrap;
@@ -499,6 +518,8 @@
 
       .nav{min-height:66px}
       .nav-links .pill{padding:11px 14px;font-size:12px}
+      .brand-love img{width:132px}
+      .hero-logo{width:92%;margin:22px 0 18px}
       .hero{padding:44px 0 46px;min-height:auto}
       h1{font-size:62px}
       .hero-line{font-size:34px}
@@ -525,8 +546,8 @@
 
 <header class="site-header">
   <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="ТУТ ВСЕ">
-      <span>ТУТ<br>ВСЕ</span><i class="dot"></i>
+    <a class="brand-love" href="#top" aria-label="Тут всё по любви">
+      <img src="assets/tutvse-po-lyubvi.png" alt="Тут всё по любви">
     </a>
     <nav class="nav-links" aria-label="Основная навигация">
       <a href="#about">о сообществе</a>
@@ -543,7 +564,9 @@
     <div class="wrap hero-grid">
       <div>
         <div class="eyebrow mono">people · events · connections</div>
-        <h1 class="display">ТУТ ВСЕ</h1>
+        <div class="hero-logo" aria-label="ТУТ ВСЕ">
+          <img src="assets/tutvse-logo-black.svg" alt="ТУТ ВСЕ">
+        </div>
         <div class="hero-line hero-line-stacked serif">
           <span>ивент</span>
           <span class="pink-chip">сообщество</span>
