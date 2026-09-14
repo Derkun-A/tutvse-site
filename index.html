@@ -475,9 +475,9 @@ button{font:inherit;color:inherit}
 .founder{position:relative;isolation:isolate;aspect-ratio:1/1;overflow:visible;margin:0;min-width:0}
 .founder::before{content:"";position:absolute;inset:0;z-index:0;border-radius:22px;background:var(--ink)}
 .founder--nastya::before{background:var(--coral)}
-.founder img{position:absolute;z-index:2;left:auto;top:auto;max-width:none;width:110%;height:110%;object-fit:contain;object-position:right bottom;display:block;pointer-events:none}
-.founder--vika img{right:0;bottom:0}
-.founder--nastya img{right:0;bottom:0;width:114%;height:114%}
+.founder__crop{position:absolute;z-index:2;top:-12%;right:0;bottom:0;left:-12%;overflow:hidden;pointer-events:none}
+.founder img{position:absolute;right:-4%;bottom:0;left:auto;top:auto;max-width:none;width:78%;height:78%;object-fit:contain;object-position:right bottom;display:block}
+.founder--nastya img{right:-5%;width:84%;height:84%}
 .founder__name{position:absolute;z-index:1;left:clamp(18px,3vw,38px);top:clamp(18px,3vw,38px);margin:0;max-width:6ch;font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(42px,6vw,92px);line-height:.82;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.2px var(--coral);paint-order:stroke fill;pointer-events:none}
 .founder--nastya .founder__name{-webkit-text-stroke-color:var(--paper)}
 .founders__copy{margin-top:clamp(28px,4vw,52px);display:grid;grid-template-columns:1fr 2fr;gap:var(--s24);align-items:start}
@@ -508,9 +508,9 @@ button{font:inherit;color:inherit}
   .story__close{top:0;width:44px;height:44px;background:var(--paper)}
   .founders__grid,.founders__copy{grid-template-columns:1fr}
   .founders__grid{gap:40px;padding:8px 12px 22px 0}
-  .founder img{width:110%;height:110%}
-  .founder--vika img{right:0;bottom:0}
-  .founder--nastya img{right:0;bottom:0;width:114%;height:114%}
+  .founder__crop{top:-10%;left:-10%}
+  .founder img{right:-4%;width:80%;height:80%}
+  .founder--nastya img{right:-5%;width:86%;height:86%}
   .founder__name{font-size:clamp(38px,14vw,72px)}
   #gefStory .story__panel{padding:16px 16px 30px}
   .gef__logo{width:calc(100% - 54px);margin-bottom:20px}
@@ -769,11 +769,11 @@ button{font:inherit;color:inherit}
     <span class="founders__eyebrow mono">00 / за проектом</span>
     <div class="founders__grid">
       <figure class="founder founder--vika">
-        <img src="assets/images/vika-cutout.png?v=1" alt="Вика Маслова" width="4096" height="4096">
+        <div class="founder__crop"><img src="assets/images/vika-cutout.png?v=1" alt="Вика Маслова" width="4096" height="4096"></div>
         <figcaption class="founder__name">Вика<br>Маслова</figcaption>
       </figure>
       <figure class="founder founder--nastya">
-        <img src="assets/images/nastya-cutout.png?v=1" alt="Настя Деркунская" width="4096" height="4096">
+        <div class="founder__crop"><img src="assets/images/nastya-cutout.png?v=1" alt="Настя Деркунская" width="4096" height="4096"></div>
         <figcaption class="founder__name">Настя<br>Деркунская</figcaption>
       </figure>
     </div>
