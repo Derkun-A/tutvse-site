@@ -466,18 +466,44 @@ button{font:inherit;color:inherit}
 .founders__copy{margin-top:clamp(28px,4vw,52px);display:grid;grid-template-columns:1fr 2fr;gap:var(--s24);align-items:start}
 .founders__copy h2{margin:0;font-family:var(--display);font-size:clamp(34px,4.8vw,70px);font-weight:400;line-height:1}
 .founders__copy p{margin:0 0 14px;font-size:clamp(17px,1.55vw,21px);line-height:1.52;max-width:64ch}
-.gef__mark{font-family:var(--display);font-size:clamp(46px,7vw,102px);line-height:.9;margin:0 0 var(--s32);color:var(--coral)}
-.gef__lead{font-family:var(--display);font-size:clamp(25px,3vw,42px);line-height:1.08;max-width:25ch;margin:0 0 var(--s32)}
-.gef__text{columns:2;column-gap:var(--s40);font-size:16px;line-height:1.55}
-.gef__text p{margin:0 0 1em;break-inside:avoid}
-.gef__link{display:inline-flex;margin-top:var(--s24)}
+.gef__logo{display:block;width:min(900px,calc(100% - 62px));height:auto;margin:0 0 clamp(24px,3vw,38px)}
+.gef__rule{height:1.5px;background:var(--hair);margin-bottom:clamp(24px,3vw,38px)}
+.gef__eyebrow{margin:0 0 clamp(18px,2vw,28px);color:#FF513E;font-size:14px;letter-spacing:.01em}
+.gef__headline{margin:0;font-family:var(--display);font-size:clamp(38px,5.3vw,72px);font-weight:400;line-height:.98;letter-spacing:-.006em}
+.gef__headline-base{display:block;margin-bottom:.14em}
+.gef__tagline{display:flex;align-items:baseline;gap:.12em;flex-wrap:wrap;font-size:1.02em}
+.gef__tagline b{font-weight:700;color:var(--pink)}
+.gef__tagline em{font-style:italic;font-weight:400;color:#FF513E}
+.gef__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(30px,4vw,52px);border-top:1.5px solid var(--hair)}
+.gef__card{padding:clamp(20px,2.3vw,30px) clamp(18px,2.2vw,30px) 8px 0}
+.gef__card+.gef__card{padding-left:clamp(18px,2.2vw,30px);border-left:1px solid var(--hair)}
+.gef__index{display:block;margin-bottom:clamp(18px,2.2vw,28px);color:#FF513E}
+.gef__card h3{margin:0 0 14px;font-family:var(--display);font-size:clamp(24px,2.4vw,34px);font-weight:400;line-height:1.02}
+.gef__card p{margin:0;color:var(--ink-soft);font-size:15.5px;line-height:1.5}
+.gef__actions{display:flex;align-items:center;justify-content:space-between;gap:var(--s24);margin-top:clamp(32px,4vw,50px)}
+.gef__link{display:inline-flex}
+.gef__promo{color:#FF513E;font-size:15px;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:760px){
   .story,.ovl{height:100vh;height:100dvh;padding:0;place-items:end stretch;background:rgba(26,26,26,.72)}
   .story__panel{width:100%;height:100%;max-height:none;border:0;padding:20px 16px 36px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
   .story__close{top:0;width:44px;height:44px;background:var(--paper)}
   .founders__grid,.founders__copy{grid-template-columns:1fr}
   .founder__name{font-size:clamp(38px,14vw,72px)}
-  .gef__text{columns:1}
+  #gefStory .story__panel{padding:16px 16px 30px}
+  .gef__logo{width:calc(100% - 54px);margin-bottom:20px}
+  .gef__rule{margin-bottom:22px}
+  .gef__eyebrow{margin-bottom:18px;font-size:13px}
+  .gef__headline{font-size:clamp(34px,10.8vw,46px);line-height:.98}
+  .gef__tagline{gap:.1em}
+  .gef__grid{grid-template-columns:1fr;margin-top:26px}
+  .gef__card{padding:20px 0}
+  .gef__card+.gef__card{padding-left:0;border-left:0;border-top:1px solid var(--hair)}
+  .gef__index{margin-bottom:13px}
+  .gef__card h3{font-size:27px}
+  .gef__card p{font-size:15px;line-height:1.48}
+  .gef__actions{align-items:stretch;flex-direction:column;gap:16px;margin-top:24px}
+  .gef__actions .btn{justify-content:center;width:100%}
+  .gef__promo{text-align:center;font-size:14px}
   .wz{width:100%;height:100%;max-height:none;border:0}
   .wz__top,.wz__body,.wz__foot{padding-left:16px;padding-right:16px}
   .wz__body{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
@@ -744,18 +770,34 @@ button{font:inherit;color:inherit}
 <div class="story" id="gefStory" hidden role="dialog" aria-modal="true" aria-labelledby="gefTitle">
   <div class="story__panel">
     <button class="story__close" type="button" data-story-close aria-label="Закрыть">✕</button>
-    <p class="gef__mark" aria-hidden="true"><b>ТУТ ВСЕ</b> × GEF</p>
-    <h2 class="gef__lead" id="gefTitle">Теперь уже официально: тут все будут.</h2>
-    <div class="gef__text">
-      <p>С 30 сентября по 4 октября в Завидово соберутся люди, которые придумывают, продают, согласовывают, производят и иногда героически спасают события в последний момент. То есть действительно будут все.</p>
-      <p>Мы уже изучаем деловую программу и собираем собственный маршрут. Больше всего хочется попасть на разговоры не только о красивых кейсах, но и о том, как на самом деле устроена работа внутри индустрии.</p>
-      <p>«Сила слабых связей: как случайные встречи формируют карьеру, проекты и новые идеи» — практически программный манифест «Тут все». Мы вообще-то именно ради таких связей всё и затеяли.</p>
-      <p>«Почему рекламный рынок перестраивается прямо сейчас и какие агентства заберут его целиком» — здесь особенно интересен разговор об ИИ: что мы ему отдадим, а что всё равно останется за людьми.</p>
-      <p>«Бизнес-шоу: прожарка презентаций и тендеров» — просто потому, что редкий ивентор способен спокойно пройти мимо публичной прожарки чужих презентаций.</p>
-      <p>Но важнее всего для нас будут люди между лекциями: разговоры за завтраком, встречи в коридорах и то самое «слушай, а давай что-нибудь вместе сделаем».</p>
-      <p>Если билет ещё не куплен, в закрепах нашего чата уже есть партнёрский промокод со скидкой 10%. Увидимся в Завидово.</p>
+    <img class="gef__logo" src="assets/images/tutvse-gef-lockup.svg" alt="Тут все × Global Event Forum 2026">
+    <div class="gef__rule" aria-hidden="true"></div>
+    <p class="gef__eyebrow">информационный партнёр · 2026</p>
+    <h2 class="gef__headline" id="gefTitle">
+      <span class="gef__headline-base">Место встречи ивент-индустрии:</span>
+      <span class="gef__tagline"><b>тут</b> <em>будут</em> <b>все</b></span>
+    </h2>
+    <div class="gef__grid">
+      <article class="gef__card">
+        <span class="gef__index mono">01 / главное</span>
+        <h3>GEF переехал в Завидово</h3>
+        <p>Главный ивент-форум стал ближе! С 30 сентября по 4 октября соберутся люди, которые придумывают, продают, согласовывают, производят и иногда героически спасают события в последний момент.</p>
+      </article>
+      <article class="gef__card">
+        <span class="gef__index mono">02 / программа</span>
+        <h3>Будет о чём поговорить</h3>
+        <p>Как строить работу клиента и агентства, превратить креатив в систему и понять, что отдать ИИ, а что оставить людям. А ещё — о силе слабых связей, почти программном манифесте «Тут все».</p>
+      </article>
+      <article class="gef__card">
+        <span class="gef__index mono">03 / зачем мы идём</span>
+        <h3>Люди</h3>
+        <p>Помимо насыщенной программы для нас, конечно, важнее будут люди между лекциями: разговоры за завтраком, встречи в коридорах и то самое: «Как здорово! А давайте вместе что-нибудь сделаем!»</p>
+      </article>
     </div>
-    <a class="btn btn--solid gef__link" href="https://gefforum.com" target="_blank" rel="noopener">Сайт GEF <i>↗</i></a>
+    <div class="gef__actions">
+      <a class="btn gef__link" href="https://gefforum.com" target="_blank" rel="noopener">Сайт GEF <i>↗</i></a>
+      <span class="gef__promo">Промокод на билет · в закрепах чата</span>
+    </div>
   </div>
 </div>
 
