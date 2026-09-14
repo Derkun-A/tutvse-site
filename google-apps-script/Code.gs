@@ -1,20 +1,16 @@
 const HEADERS = [
-  'application_id',
-  'submitted_at',
-  'route',
-  'name',
-  'telegram',
-  'email',
-  'role',
-  'recommender',
-  'portfolio',
-  'about',
-  'source',
-  'page_url',
-  'user_agent',
-  'status',
-  'admin_comment',
-  'notification_status'
+  'Дата',
+  'Имя',
+  'Telegram',
+  'Email',
+  'Компания / роль',
+  'Тип заявки',
+  'Рекомендатель',
+  'Кейсы / портфолио',
+  'О себе',
+  'Источник',
+  'Статус',
+  'Комментарий команды'
 ];
 
 function doGet() {
@@ -40,9 +36,7 @@ function doPost(e) {
       recommender: clean_(p.recommender, 300),
       portfolio: clean_(p.portfolio, 500),
       about: clean_(p.about, 3000),
-      source: clean_(p.source, 500),
-      page_url: clean_(p.page_url, 1000),
-      user_agent: clean_(p.user_agent, 1000)
+      source: clean_(p.source, 500)
     };
 
     validate_(application);
@@ -54,49 +48,40 @@ function doPost(e) {
     let rowNumber;
     try {
       sheet = getSheet_();
-      const duplicate = sheet.getRange(1, 1, Math.max(sheet.getLastRow(), 1), 1)
-        .createTextFinder(requestId)
-        .matchEntireCell(true)
-        .findNext();
+      const routeLabel = ['ref', 'reco'].includes(application.route)
+        ? 'Есть рекомендация'
+        : 'Новое знакомство';
 
-      if (duplicate) {
-        return response_({ ok: true, request_id: requestId, application_id: requestId, duplicate: true });
-      }
-
-      const row = [
-        requestId,
+      sheet.appendRow([
         new Date(),
-        application.route,
         application.name,
         application.telegram,
         application.email,
         application.role,
+        routeLabel,
         application.recommender,
         application.portfolio,
         application.about,
         application.source,
-        application.page_url,
-        application.user_agent,
-        'new',
-        '',
-        'pending'
-      ];
-      sheet.appendRow(row);
+        'Новая',
+        ''
+      ]);
       rowNumber = sheet.getLastRow();
     } finally {
       lock.releaseLock();
     }
 
-    let notificationStatus = 'sent';
     try {
       sendTelegram_(application, requestId);
     } catch (telegramError) {
-      notificationStatus = 'error: ' + clean_(telegramError.message, 400);
+      // Заявка уже сохранена: отмечаем ошибку уведомления, но не просим
+      // пользователя отправлять форму повторно.
+      sheet.getRange(rowNumber, HEADERS.indexOf('Комментарий команды') + 1)
+        .setValue('Заявка сохранена; ошибка уведомления Telegram: ' + clean_(telegramError.message, 250));
       console.error(telegramError);
     }
-    sheet.getRange(rowNumber, HEADERS.indexOf('notification_status') + 1).setValue(notificationStatus);
 
-    return response_({ ok: true, request_id: requestId, application_id: requestId });
+    return response_({ ok: true, request_id: requestId });
   } catch (error) {
     console.error(error);
     return response_({
@@ -118,7 +103,7 @@ function setup() {
 function getSheet_() {
   const props = PropertiesService.getScriptProperties();
   const spreadsheetId = props.getProperty('SPREADSHEET_ID');
-  const sheetName = props.getProperty('SHEET_NAME') || 'Заявки с сайта';
+  const sheetName = props.getProperty('SHEET_NAME') || 'Заявки';
   if (!spreadsheetId) throw new Error('Не задано свойство SPREADSHEET_ID');
 
   const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
@@ -130,7 +115,7 @@ function getSheet_() {
   } else {
     const actual = sheet.getRange(1, 1, 1, HEADERS.length).getDisplayValues()[0];
     if (actual.join('|') !== HEADERS.join('|')) {
-      throw new Error('Заголовки листа не совпадают. Используйте новый пустой лист или исправьте первую строку.');
+      throw new Error('Заголовки листа не совпадают с ожидаемой структурой.');
     }
   }
   return sheet;
@@ -202,6 +187,6 @@ function escapeHtml_(value) {
 function response_(result) {
   const payload = JSON.stringify(Object.assign({ type: 'tutvse:application-result' }, result)).replace(/</g, '\\u003c');
   return HtmlService
-    .createHtmlOutput('<!doctype html><meta charset="utf-8"><script>parent.postMessage(' + payload + ',"*");<\/script>')
+    .createHtmlOutput('<!doctype html><meta charset="utf-8"><script>parent.postMessage(' + payload + ',"*");<\\/script>')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
