@@ -6,7 +6,8 @@
 <meta name="theme-color" content="#F4F1EA">
 <style>*{box-sizing:border-box}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>тут все · ивент-сообщество</title>
-<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=2">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=3">
+<link rel="shortcut icon" href="assets/images/favicon.svg?v=3">
 <link rel="preload" href="assets/fonts/AllHere-Regular.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="assets/fonts/AllHere-Italic.otf" as="font" type="font/otf" crossorigin>
 <link rel="preload" href="assets/fonts/AllHere-Bold.otf" as="font" type="font/otf" crossorigin>
@@ -471,9 +472,10 @@ button{font:inherit;color:inherit}
 .story__close:hover{background:var(--ink);color:var(--paper)}
 .founders__eyebrow{display:block;color:var(--coral);margin-bottom:var(--s16)}
 .founders__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s24)}
-.founder{position:relative;isolation:isolate;aspect-ratio:1/1;overflow:hidden;border-radius:22px;background:var(--ink);margin:0}
-.founder--nastya{background:var(--coral)}
-.founder img{position:absolute;inset:0;z-index:2;width:100%;height:100%;object-fit:cover;display:block}
+.founder{position:relative;isolation:isolate;aspect-ratio:1/1;overflow:visible;margin:0}
+.founder::before{content:"";position:absolute;inset:0;z-index:0;border-radius:22px;background:var(--ink)}
+.founder--nastya::before{background:var(--coral)}
+.founder img{position:absolute;z-index:2;right:-1%;bottom:-5%;left:auto;top:auto;width:auto;height:106%;max-width:none;object-fit:contain;object-position:right bottom;display:block}
 .founder__name{position:absolute;z-index:1;left:clamp(18px,3vw,38px);top:clamp(18px,3vw,38px);margin:0;max-width:5ch;font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(42px,6vw,92px);line-height:.82;color:transparent;-webkit-text-stroke:1.2px var(--coral);paint-order:stroke fill;pointer-events:none}
 .founder--nastya .founder__name{-webkit-text-stroke-color:var(--paper)}
 .founders__copy{margin-top:clamp(28px,4vw,52px);display:grid;grid-template-columns:1fr 2fr;gap:var(--s24);align-items:start}
@@ -849,7 +851,7 @@ button{font:inherit;color:inherit}
         <h3 class="wz__q">Чем занимаетесь?</h3>
         <p class="wz__hint">Так участникам будет понятно, с чем к вам приходить.</p>
         <div class="fields">
-          <div class="f f--full"><label for="fRole">Компания / роль</label><input id="fRole" name="role" placeholder="те самые · head of design"><span class="err">Укажите компанию и роль</span></div>
+          <div class="f f--full"><label for="fRole">Компания / роль</label><input id="fRole" name="role" placeholder="тут все · коммьюнити-менеджер"><span class="err">Укажите компанию и роль</span></div>
           <div class="f f--full"><label for="fFrom">Откуда узнали о «Тут все»</label><input id="fFrom" name="from" placeholder="телеграм-канал, коллега, GEF…"></div>
         </div>
       </div>
@@ -1104,12 +1106,25 @@ button{font:inherit;color:inherit}
       var input=document.createElement('input'); input.type='hidden'; input.name=name; input.value=fields[name]; postForm.appendChild(input);
     });
 
-    document.body.appendChild(iframe); document.body.appendChild(postForm);
-    submitJob={id:id,iframe:iframe,form:postForm,timer:setTimeout(function(){
+    document.body.appendChild(postForm);
+    submitJob={id:id,iframe:iframe,form:postForm,phase:'boot',timer:setTimeout(function(){
       submissionFailed('Сервис не подтвердил отправку. Заявка не отмечена как отправленная — попробуйте ещё раз.');
-    },SUBMIT_TIMEOUT)};
-    try{ postForm.submit(); }
-    catch(err){ submissionFailed('Не удалось связаться с сервисом заявок. Попробуйте ещё раз чуть позже.'); }
+    },25000)};
+    iframe.addEventListener('load',function(){
+      if(!submitJob||submitJob.iframe!==iframe) return;
+      if(submitJob.phase==='boot'){
+        submitJob.phase='submitted';
+        try{ postForm.submit(); }
+        catch(err){ submissionFailed('Не удалось связаться с сервисом заявок. Попробуйте ещё раз чуть позже.'); }
+        return;
+      }
+      if(submitJob.phase==='submitted'){
+        setTimeout(function(){
+          if(submitJob&&submitJob.iframe===iframe) submissionSucceeded();
+        },120);
+      }
+    });
+    document.body.appendChild(iframe);
   }
 
   window.addEventListener('message',function(event){
