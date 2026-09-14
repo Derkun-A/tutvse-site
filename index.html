@@ -418,7 +418,7 @@ button{font:inherit;color:inherit}
 .wz__step{display:none;flex-direction:column;gap:var(--s24)}
 .wz__step.on{display:flex}
 .wz__q{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(25px,3vw,40px);line-height:1.08;letter-spacing:-.006em}
-.wz__hint{margin:-14px 0 0;color:var(--ink-mute);font-size:14px;line-height:1.5}
+.wz__hint{margin:0;color:var(--ink-mute);font-size:14px;line-height:1.5}\n.wz__step > [data-only] > .wz__hint{margin-top:12px}
 
 .picks{display:grid;gap:12px}
 .pick{
@@ -641,7 +641,7 @@ button{font:inherit;color:inherit}
       <article class="row row--a grid12">
         <span class="row__k mono">TV / 01</span>
         <div class="row__t"><span class="mk">Т</span><h3 class="d2">Комьюнити</h3></div>
-        <p class="row__d">Закрытый чат участников.</p>
+        <p class="row__d">Закрытый чат участников, где каждый готов помочь, подсказать, поделиться.</p>
         <span class="row__s mono">каждый день</span>
       </article>
       <article class="row row--b grid12">
@@ -851,9 +851,9 @@ button{font:inherit;color:inherit}
       <div class="wz__step" data-step="3">
         <div data-only="ref">
           <h3 class="wz__q">Кто вас рекомендует?</h3>
-          <p class="wz__hint">Достаточно имени и ника — мы уточним у человека сами.</p>
+          <p class="wz__hint">Укажите Telegram-ник — мы уточним у человека сами.</p>
           <div class="fields" style="margin-top:24px">
-            <div class="f f--full"><label for="fRef">Имя и Telegram рекомендующего</label><input id="fRef" name="ref" placeholder="Виктория Маслова, @maslova"><span class="err">Напишите, кто может вас подтвердить</span></div>
+            <div class="f f--full"><label for="fRef">Telegram рекомендующего</label><input id="fRef" name="ref" placeholder="@maslova" autocapitalize="none" autocomplete="off"><span class="err">Укажите Telegram-ник того, кто вас рекомендует</span></div>
           </div>
         </div>
         <div data-only="new" hidden>
@@ -1024,7 +1024,7 @@ button{font:inherit;color:inherit}
   function valid(id){
     var el=document.getElementById(id), v=el.value.trim();
     if(id==='fMail') return /^[^@\s]+@[^@\s.]+\.[^@\s]{2,}$/.test(v);
-    if(id==='fTg')   return /^@?[a-zA-Z0-9_]{4,}$/.test(v);
+    if(id==='fTg'||id==='fRef') return /^@?[a-zA-Z0-9_]{4,}$/.test(v);
     if(id==='fCase') return v.length>3;
     if(id==='fAbout')return v.length>15;
     return v.length>1;
