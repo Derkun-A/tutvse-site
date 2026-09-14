@@ -1,20 +1,28 @@
-name: One-time form smoke test
+name: Smoke
 
-on:
-  push:
-    paths:
-      - ".github/workflows/form-smoke-test.yml"
+on: push
 
 jobs:
-  submit:
+  smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - name: Submit marked test application
-        shell: bash
+      - name: Post test application
         run: |
-          set -euo pipefail
-          response="$(curl --fail-with-body --silent --show-error --location             --connect-timeout 15 --max-time 45             --data-urlencode "request_id=codex-smoke-20260914-01"             --data-urlencode "route=new"             --data-urlencode "name=ТЕСТ CODEX · проверка формы"             --data-urlencode "telegram=@codex_test"             --data-urlencode "email=codex-test@tutvse.community"             --data-urlencode "role=тут все · коммьюнити-менеджер"             --data-urlencode "recommender="             --data-urlencode "portfolio=https://tutvse.community/?codex-smoke-test"             --data-urlencode "about=Техническая тестовая заявка для проверки формы, таблицы и уведомления в Telegram."             --data-urlencode "source=CODEX SMOKE TEST — можно удалить"             --data-urlencode "page_url=https://tutvse.community/"             --data-urlencode "user_agent=Codex smoke test via GitHub Actions"             --data-urlencode "elapsed_ms=1000"             --data-urlencode "website="             "https://script.google.com/macros/s/AKfycbwShq1U2IjOhI1hAD3r4hsQMa-bQZPKJG71GaQdZiK6dZ0B6HbfDgS4DBvF8NmXDsFp_Q/exec")"
-          printf '%s' "$response" | grep -q '"ok":true'
-          printf '%s
-' "$response"
+          curl --fail-with-body --silent --show-error --location --connect-timeout 15 --max-time 45 \
+            --data-urlencode "request_id=codex-smoke-20260914-02" \
+            --data-urlencode "route=new" \
+            --data-urlencode "name=CODEX TEST FORM" \
+            --data-urlencode "telegram=@codex_test" \
+            --data-urlencode "email=codex-test@tutvse.community" \
+            --data-urlencode "role=tut vse community manager" \
+            --data-urlencode "portfolio=https://tutvse.community/?codex-smoke-test" \
+            --data-urlencode "about=Technical smoke test for the application form, spreadsheet and Telegram bot." \
+            --data-urlencode "source=CODEX SMOKE TEST - safe to delete" \
+            --data-urlencode "page_url=https://tutvse.community/" \
+            --data-urlencode "user_agent=Codex smoke test via GitHub Actions" \
+            --data-urlencode "elapsed_ms=1000" \
+            --data-urlencode "website=" \
+            "https://script.google.com/macros/s/AKfycbwShq1U2IjOhI1hAD3r4hsQMa-bQZPKJG71GaQdZiK6dZ0B6HbfDgS4DBvF8NmXDsFp_Q/exec" \
+            | tee response.html
+          grep -q '"ok":true' response.html
