@@ -252,6 +252,12 @@ button{font:inherit;color:inherit}
 .cols__k{color:var(--ink-mute)}
 .cols h3{margin:0}
 .cols p{margin:auto 0 0;color:var(--ink-soft);font-size:16px;line-height:1.55;max-width:32ch}
+.cols .ac{transition:color .34s var(--ease)}
+@media(hover:hover){
+  .cols > article:nth-child(1):hover .ac{color:var(--pink)}
+  .cols > article:nth-child(2):hover .ac{color:#FF513E}
+  .cols > article:nth-child(3):hover .ac{color:#7A4DFF}
+}
 @media(max-width:900px){
   .cols > article{grid-column:1/-1;padding:var(--s24) 0 var(--s32)}
   .cols > article + article{padding-left:0;border-left:0}
