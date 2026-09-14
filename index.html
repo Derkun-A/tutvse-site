@@ -7,13 +7,16 @@
 <style>*{box-sizing:border-box}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>тут все · ивент-сообщество</title>
 <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+<link rel="preload" href="assets/fonts/AllHere-Regular.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="assets/fonts/AllHere-Italic.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="assets/fonts/AllHere-Bold.otf" as="font" type="font/otf" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
 <style>
-@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Regular.otf") format("opentype");font-style:normal;font-weight:400;font-display:swap}
-@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Italic.otf") format("opentype");font-style:italic;font-weight:400;font-display:swap}
-@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Bold.otf") format("opentype");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Regular.otf") format("opentype");font-style:normal;font-weight:400;font-display:block}
+@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Italic.otf") format("opentype");font-style:italic;font-weight:400;font-display:block}
+@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Bold.otf") format("opentype");font-style:normal;font-weight:700;font-display:block}
 
 /* ============================================================
    ТУТ ВСЕ · направление «Редакция»
@@ -62,7 +65,7 @@ main section[id],.row[id]{scroll-margin-top:90px}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--body);font-size:16px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-synthesis:none;overflow-x:hidden;
 }
 img{max-width:100%}
 a{color:inherit}
@@ -256,7 +259,7 @@ button{font:inherit;color:inherit}
 @media(hover:hover){
   .cols > article:nth-child(1):hover .ac{color:var(--pink)}
   .cols > article:nth-child(2):hover .ac{color:#FF513E}
-  .cols > article:nth-child(3):hover .ac{color:#7A4DFF}
+  .cols > article:nth-child(3):hover .ac{color:#FF513E}
 }
 @media(max-width:900px){
   .cols > article{grid-column:1/-1;padding:var(--s24) 0 var(--s32)}
@@ -321,6 +324,8 @@ button{font:inherit;color:inherit}
 .plate .plate__mark b{font-weight:700;white-space:nowrap}
 .plate .plate__mark em{font-style:normal;font-weight:400;white-space:nowrap}
 .plate .plate__mark span{opacity:.5;padding-inline:.08em}
+.plate__logo{display:block;width:min(820px,100%);height:auto;filter:brightness(0) invert(1)}
+.plate.is-pink .plate__logo{filter:brightness(0)}
 .plate p{margin:0;font-size:clamp(16px,1.4vw,20px);line-height:1.45;max-width:36ch;color:rgba(255,255,255,.92)}
 .ptag{display:inline-block;padding:9px 14px;border:1.5px solid rgba(255,255,255,.55);font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase}
 @media(max-width:960px){.plate__l,.plate__r{grid-column:1/-1}.plate__r{margin-top:var(--s24)}}
@@ -387,7 +392,7 @@ button{font:inherit;color:inherit}
 .closer__word{
   margin:0;display:inline-block;white-space:nowrap;
   font-family:var(--display);font-weight:400;
-  font-size:clamp(44px,12.6vw,224px);line-height:1.06;letter-spacing:-.008em;
+  font-size:clamp(42px,9vw,156px);line-height:1.06;letter-spacing:-.008em;
 }
 .closer__word b{font-weight:700;color:var(--ink)}
 .closer__foot{
@@ -418,7 +423,8 @@ button{font:inherit;color:inherit}
 .wz__step{display:none;flex-direction:column;gap:var(--s24)}
 .wz__step.on{display:flex}
 .wz__q{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(25px,3vw,40px);line-height:1.08;letter-spacing:-.006em}
-.wz__hint{margin:0;color:var(--ink-mute);font-size:14px;line-height:1.5}\n.wz__step > [data-only] > .wz__hint{margin-top:12px}
+.wz__hint{margin:0;color:var(--ink-mute);font-size:14px;line-height:1.5}
+.wz__step > [data-only] > .wz__hint{margin-top:12px}
 
 .picks{display:grid;gap:12px}
 .pick{
@@ -696,12 +702,12 @@ button{font:inherit;color:inherit}
   <section class="plate" id="partners" role="button" tabindex="0" data-gef aria-label="Открыть материал о Global Event Forum">
     <div class="wrap plate__in grid12">
       <div class="plate__l">
-        <p class="plate__mark"><b>ТУТ ВСЕ</b> <span>×</span> <a href="https://gefforum.com" target="_blank" rel="noopener" aria-label="Сайт Global Event Forum"><em>GEF</em></a></p>
+        <img class="plate__logo" src="assets/images/tutvse-gef-lockup.svg?v=2" alt="Тут все × Global Event Forum 2026">
         <p>Информационный партнёр Global Event Forum.</p>
       </div>
       <div class="plate__r">
         <a class="ptag" href="https://gefforum.com" target="_blank" rel="noopener">партнёрство · 2026</a>
-        <button class="btn btn--onCoral btn--sm" type="button">Как попасть <i>→</i></button>
+        <button class="btn btn--onCoral btn--sm" type="button">Хочу на GEF <i>→</i></button>
       </div>
     </div>
   </section>
@@ -777,8 +783,6 @@ button{font:inherit;color:inherit}
 <div class="story" id="gefStory" hidden role="dialog" aria-modal="true" aria-labelledby="gefTitle">
   <div class="story__panel">
     <button class="story__close" type="button" data-story-close aria-label="Закрыть">✕</button>
-    <img class="gef__logo" src="assets/images/tutvse-gef-lockup.svg" alt="Тут все × Global Event Forum 2026">
-    <div class="gef__rule" aria-hidden="true"></div>
     <p class="gef__eyebrow">информационный партнёр · 2026</p>
     <h2 class="gef__headline" id="gefTitle">
       <span class="gef__headline-base">Место встречи ивент-индустрии:</span>
@@ -948,21 +952,6 @@ button{font:inherit;color:inherit}
     logo.addEventListener('pointerleave',function(){ mx=-9999; if(!raf) raf=requestAnimationFrame(paint); });
   }
 
-  var word=document.querySelector('.closer__word');
-  function fitWord(){
-    if(!word) return;
-    var box=word.closest('.closer__in'), cs=getComputedStyle(box);
-    var avail=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
-    if(avail<=0) return;
-    word.style.fontSize='100px';
-    var w=word.scrollWidth;
-    if(!w) return;
-    word.style.fontSize=Math.min(100*avail/w*0.993,300).toFixed(1)+'px';
-  }
-  fitWord();
-  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitWord); }
-  window.addEventListener('load',fitWord);
-  var fitT; window.addEventListener('resize',function(){ clearTimeout(fitT); fitT=setTimeout(fitWord,120); });
 
   /* плашка партнёра: вся область кликабельна и меняет цвет */
   var plate=document.querySelector('.plate');
@@ -1056,8 +1045,13 @@ button{font:inherit;color:inherit}
     if(window.crypto&&typeof window.crypto.randomUUID==='function') return window.crypto.randomUUID();
     return 'tv-'+Date.now()+'-'+Math.random().toString(36).slice(2,10);
   }
-  function trustedScriptOrigin(origin){
-    return origin==='https://script.google.com'||origin==='https://script.googleusercontent.com';
+  function trustedScriptMessage(event){
+    if(!submitJob||event.source!==submitJob.iframe.contentWindow) return false;
+    if(event.origin==='null') return true;
+    try{
+      var host=new URL(event.origin).hostname;
+      return host==='script.google.com'||host==='script.googleusercontent.com'||/\.googleusercontent\.com$/.test(host);
+    }catch(err){ return false; }
   }
   function cleanupSubmission(){
     if(!submitJob) return;
@@ -1086,7 +1080,8 @@ button{font:inherit;color:inherit}
 
     var id=requestId(), iframe=document.createElement('iframe'), postForm=document.createElement('form');
     var frameName='tutvse_submit_'+Date.now();
-    iframe.name=frameName; iframe.hidden=true; iframe.setAttribute('aria-hidden','true');
+    iframe.name=frameName; iframe.title='Отправка заявки'; iframe.setAttribute('aria-hidden','true');
+    iframe.style.cssText='position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;border:0;left:-10px;bottom:-10px';
     postForm.method='POST'; postForm.action=APPLICATION_ENDPOINT; postForm.target=frameName; postForm.hidden=true;
 
     var fields={
@@ -1118,7 +1113,7 @@ button{font:inherit;color:inherit}
   }
 
   window.addEventListener('message',function(event){
-    if(!submitJob||!trustedScriptOrigin(event.origin)) return;
+    if(!trustedScriptMessage(event)) return;
     var data=event.data;
     if(typeof data==='string'){try{data=JSON.parse(data)}catch(err){return}}
     if(!data||data.type!=='tutvse:application-result'||data.request_id!==submitJob.id) return;
