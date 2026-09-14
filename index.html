@@ -6,21 +6,21 @@
 <meta name="theme-color" content="#F4F1EA">
 <style>*{box-sizing:border-box}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>тут все · ивент-сообщество</title>
-<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=3">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=4">
 <link rel="shortcut icon" href="assets/images/favicon.svg?v=3">
-<link rel="preload" href="assets/fonts/AllHere-Regular.otf" as="font" type="font/otf" crossorigin>
-<link rel="preload" href="assets/fonts/AllHere-Italic.otf" as="font" type="font/otf" crossorigin>
-<link rel="preload" href="assets/fonts/AllHere-Bold.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="assets/fonts/AllHere-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/AllHere-Italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/AllHere-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
 <style>
-@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Regular.otf") format("opentype");font-style:normal;font-weight:400;font-display:block}
-@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Italic.otf") format("opentype");font-style:italic;font-weight:400;font-display:block}
-@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Bold.otf") format("opentype");font-style:normal;font-weight:700;font-display:block}
+@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Regular.woff2") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Italic.woff2") format("woff2");font-style:italic;font-weight:400;font-display:swap}
+@font-face{font-family:"All Here";src:url("assets/fonts/AllHere-Bold.woff2") format("woff2");font-style:normal;font-weight:700;font-display:swap}
 
 /* ============================================================
-   ТУТ ВСЕ · направление «Редакция»
+   ТУТ ВСЕ · ивент-сообщество
    All Here Regular — рабочее начертание.
    Bold — только логотип и одно акцентное слово в композиции.
    Italic — второй акцент. Трекинг близок к нулю: шрифт широкий.
@@ -468,15 +468,17 @@ button{font:inherit;color:inherit}
 .story{position:fixed;inset:0;z-index:190;background:rgba(26,26,26,.66);backdrop-filter:blur(8px);display:grid;place-items:center;padding:var(--gutter)}
 .story[hidden]{display:none}
 .story__panel{position:relative;width:min(1120px,100%);max-height:92vh;overflow:auto;background:var(--paper);border:1.5px solid var(--ink);padding:clamp(22px,3.5vw,54px)}
-.story__close{position:sticky;top:0;float:right;z-index:2;width:40px;height:40px;border:1.5px solid var(--ink);background:var(--paper);cursor:pointer;font-size:17px}
+.story__close{position:sticky;top:0;float:right;z-index:10;width:40px;height:40px;border:1.5px solid var(--ink);background:var(--paper);cursor:pointer;font-size:17px}
 .story__close:hover{background:var(--ink);color:var(--paper)}
 .founders__eyebrow{display:block;color:var(--coral);margin-bottom:var(--s16)}
-.founders__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s24)}
-.founder{position:relative;isolation:isolate;aspect-ratio:1/1;overflow:visible;margin:0}
+.founders__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,42px);padding:clamp(10px,1.5vw,20px) clamp(10px,1.4vw,18px) clamp(14px,2vw,26px) 0}
+.founder{position:relative;isolation:isolate;aspect-ratio:1/1;overflow:visible;margin:0;min-width:0}
 .founder::before{content:"";position:absolute;inset:0;z-index:0;border-radius:22px;background:var(--ink)}
 .founder--nastya::before{background:var(--coral)}
-.founder img{position:absolute;z-index:2;right:-1%;bottom:-5%;left:auto;top:auto;width:auto;height:106%;max-width:none;object-fit:contain;object-position:right bottom;display:block}
-.founder__name{position:absolute;z-index:1;left:clamp(18px,3vw,38px);top:clamp(18px,3vw,38px);margin:0;max-width:5ch;font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(42px,6vw,92px);line-height:.82;color:transparent;-webkit-text-stroke:1.2px var(--coral);paint-order:stroke fill;pointer-events:none}
+.founder img{position:absolute;z-index:2;left:auto;top:auto;max-width:none;width:110%;height:110%;object-fit:contain;object-position:right bottom;display:block;pointer-events:none}
+.founder--vika img{right:-4%;bottom:-7%}
+.founder--nastya img{right:-8%;bottom:-5%;width:114%;height:114%}
+.founder__name{position:absolute;z-index:1;left:clamp(18px,3vw,38px);top:clamp(18px,3vw,38px);margin:0;max-width:6ch;font-family:var(--display);font-style:italic;font-weight:400;font-size:clamp(42px,6vw,92px);line-height:.82;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.2px var(--coral);paint-order:stroke fill;pointer-events:none}
 .founder--nastya .founder__name{-webkit-text-stroke-color:var(--paper)}
 .founders__copy{margin-top:clamp(28px,4vw,52px);display:grid;grid-template-columns:1fr 2fr;gap:var(--s24);align-items:start}
 .founders__copy h2{margin:0;font-family:var(--display);font-size:clamp(34px,4.8vw,70px);font-weight:400;line-height:1}
@@ -505,6 +507,10 @@ button{font:inherit;color:inherit}
   .story__panel{width:100%;height:100%;max-height:none;border:0;padding:20px 16px 36px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
   .story__close{top:0;width:44px;height:44px;background:var(--paper)}
   .founders__grid,.founders__copy{grid-template-columns:1fr}
+  .founders__grid{gap:40px;padding:8px 12px 22px 0}
+  .founder img{width:110%;height:110%}
+  .founder--vika img{right:-4%;bottom:-7%}
+  .founder--nastya img{right:-7%;bottom:-5%;width:114%;height:114%}
   .founder__name{font-size:clamp(38px,14vw,72px)}
   #gefStory .story__panel{padding:16px 16px 30px}
   .gef__logo{width:calc(100% - 54px);margin-bottom:20px}
@@ -763,11 +769,11 @@ button{font:inherit;color:inherit}
     <span class="founders__eyebrow mono">00 / за проектом</span>
     <div class="founders__grid">
       <figure class="founder founder--vika">
-        <img src="assets/images/vika-cutout.svg?v=2" alt="Вика Маслова" width="900" height="900">
+        <img src="assets/images/vika-cutout.png?v=1" alt="Вика Маслова" width="4096" height="4096">
         <figcaption class="founder__name">Вика<br>Маслова</figcaption>
       </figure>
       <figure class="founder founder--nastya">
-        <img src="assets/images/nastya-cutout.svg" alt="Настя Деркунская" width="900" height="900">
+        <img src="assets/images/nastya-cutout.png?v=1" alt="Настя Деркунская" width="4096" height="4096">
         <figcaption class="founder__name">Настя<br>Деркунская</figcaption>
       </figure>
     </div>
