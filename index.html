@@ -148,9 +148,15 @@ button{font:inherit;color:inherit}
 .nav__button{position:relative;border:0;background:none;padding:0 0 4px;color:var(--ink-soft);font-size:15px;cursor:pointer}
 .nav__button::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--coral);transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
 .nav__button:hover::after,.nav__button:focus-visible::after{transform:scaleX(1);transform-origin:left}
-.who-short{display:none}
-@media(max-width:1080px){.nav{display:none}.brand__sub{display:none}}
-@media(max-width:1080px){.who-short{display:inline-flex}}
+.mobile-menu{display:none;position:relative}
+.mobile-menu summary{list-style:none;border:1.5px solid var(--ink);padding:10px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;user-select:none}
+.mobile-menu summary::-webkit-details-marker{display:none}
+.mobile-menu summary::after{content:'+';display:inline-block;margin-left:10px;font-size:15px;line-height:0;transition:transform .2s}
+.mobile-menu[open] summary::after{transform:rotate(45deg)}
+.mobile-menu__panel{position:absolute;z-index:90;top:calc(100% + 10px);right:0;width:min(290px,calc(100vw - 28px));padding:10px;background:var(--paper);border:1.5px solid var(--ink);box-shadow:0 18px 44px rgba(26,26,26,.16);display:grid}
+.mobile-menu__panel a,.mobile-menu__panel button{width:100%;min-height:46px;display:flex;align-items:center;text-align:left;padding:10px 12px;border:0;border-bottom:1px solid var(--hair-2);background:transparent;color:var(--ink);font-size:16px;text-decoration:none;cursor:pointer}
+.mobile-menu__panel > :last-child{border-bottom:0}
+@media(max-width:1080px){.nav{display:none}.brand__sub{display:none}.mobile-menu{display:block}}
 @media(max-width:620px){.hdr__cta{display:none}.hdr__in{gap:10px}.brand__mark{font-size:21px}}
 
 /* ---------- герой ---------- */
@@ -465,7 +471,20 @@ button{font:inherit;color:inherit}
 .gef__text{columns:2;column-gap:var(--s40);font-size:16px;line-height:1.55}
 .gef__text p{margin:0 0 1em;break-inside:avoid}
 .gef__link{display:inline-flex;margin-top:var(--s24)}
-@media(max-width:760px){.founders__grid,.founders__copy{grid-template-columns:1fr}.founder__name{font-size:clamp(38px,14vw,72px)}.gef__text{columns:1}}
+@media(max-width:760px){
+  .story,.ovl{height:100vh;height:100dvh;padding:0;place-items:end stretch;background:rgba(26,26,26,.72)}
+  .story__panel{width:100%;height:100%;max-height:none;border:0;padding:20px 16px 36px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .story__close{top:0;width:44px;height:44px;background:var(--paper)}
+  .founders__grid,.founders__copy{grid-template-columns:1fr}
+  .founder__name{font-size:clamp(38px,14vw,72px)}
+  .gef__text{columns:1}
+  .wz{width:100%;height:100%;max-height:none;border:0}
+  .wz__top,.wz__body,.wz__foot{padding-left:16px;padding-right:16px}
+  .wz__body{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .wz__foot{padding-bottom:max(16px,env(safe-area-inset-bottom))}
+  .wz__count{font-size:10px}
+  button,[role="button"],summary{touch-action:manipulation}
+}
 </style>
 </head>
 <body>
@@ -486,7 +505,16 @@ button{font:inherit;color:inherit}
       <a href="#join">как попасть</a>
       <button class="nav__button" data-founders>кто мы</button>
     </nav>
-    <button class="btn btn--sm who-short" data-founders>кто мы</button>
+    <details class="mobile-menu" id="mobileMenu">
+      <summary aria-label="Открыть меню">меню</summary>
+      <nav class="mobile-menu__panel" aria-label="Мобильная навигация">
+        <a href="#about">о сообществе</a>
+        <a href="#database">база</a>
+        <a href="#inside">что внутри</a>
+        <a href="#join">как попасть</a>
+        <button type="button" data-founders>кто мы</button>
+      </nav>
+    </details>
     <button class="btn btn--solid btn--sm hdr__cta" data-open>Хочу в «Тут все» <i>→</i></button>
   </div>
 </header>
@@ -829,17 +857,17 @@ button{font:inherit;color:inherit}
   var prog=document.getElementById('prog');
 
   var storyLastFocus=null;
-  function openStory(el){storyLastFocus=document.activeElement;el.hidden=false;document.body.style.overflow='hidden';setTimeout(function(){var c=el.querySelector('[data-story-close]');if(c)c.focus();},20)}
-  function closeStory(el){el.hidden=true;document.body.style.overflow='';if(storyLastFocus)storyLastFocus.focus()}
-  document.querySelectorAll('[data-founders]').forEach(function(b){b.addEventListener('click',function(){openStory(document.getElementById('foundersStory'))})});
-  var partner=document.querySelector('[data-gef]');
-  if(partner){
-    var openGef=function(){openStory(document.getElementById('gefStory'))};
-    partner.addEventListener('click',function(e){if(e.target.closest('a'))return;openGef()});
-    partner.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&!e.target.closest('a')){e.preventDefault();openGef()}});
+  function openStory(el){
+    if(!el)return;
+    storyLastFocus=document.activeElement;el.hidden=false;el.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    setTimeout(function(){var c=el.querySelector('[data-story-close]');if(c)c.focus();},20);
   }
-  document.querySelectorAll('[data-story-close]').forEach(function(b){b.addEventListener('click',function(){closeStory(b.closest('.story'))})});
-  document.querySelectorAll('.story').forEach(function(s){s.addEventListener('mousedown',function(e){if(e.target===s)closeStory(s)})});
+  function closeStory(el){
+    if(!el)return;
+    el.hidden=true;el.setAttribute('aria-hidden','true');document.body.style.overflow='';
+    if(storyLastFocus)storyLastFocus.focus();
+  }
 
   var roleLines=[].slice.call(document.querySelectorAll('[data-role]'));
   if(!reduce&&roleLines.length){setInterval(function(){roleLines.forEach(function(el){var options=el.dataset.role.split(' · ');var n=(+(el.dataset.i||0)+1)%options.length;el.dataset.i=n;el.animate([{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'none'}],{duration:420,easing:'ease-out'});el.textContent=options[n]})},2800)}
@@ -916,12 +944,12 @@ button{font:inherit;color:inherit}
   function open(r){
     lastFocus=document.activeElement;
     openedAt=Date.now(); submitError.hidden=true;
-    ovl.hidden=false; document.body.style.overflow='hidden';
+    ovl.hidden=false; ovl.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
     if(r){ route=r; pickUI(); i=1; } else { i=0; }
     render();
     setTimeout(function(){ var t=ovl.querySelector('.wz__step.on input, .wz__step.on .pick'); if(t) t.focus(); },40);
   }
-  function close(){ cancelSubmission(); ovl.hidden=true; document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
+  function close(){ cancelSubmission(); ovl.hidden=true; ovl.setAttribute('aria-hidden','true'); document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
   function pickUI(){
     ovl.querySelectorAll('.pick').forEach(function(p){ p.setAttribute('aria-pressed', String(p.dataset.pick===route)); });
     ovl.querySelector('[data-only="ref"]').hidden = route!=='ref';
@@ -1049,11 +1077,24 @@ button{font:inherit;color:inherit}
     else submissionFailed(data.message||'Сервис не смог сохранить заявку. Попробуйте ещё раз.');
   });
 
-  document.querySelectorAll('[data-open]').forEach(function(b){
-    b.addEventListener('click', function(){ open(b.dataset.route||null); });
+  document.addEventListener('click',function(e){
+    var founders=e.target.closest('[data-founders]');
+    if(founders){e.preventDefault();var fm=document.getElementById('mobileMenu');if(fm)fm.removeAttribute('open');openStory(document.getElementById('foundersStory'));return;}
+    var formOpen=e.target.closest('[data-open]');
+    if(formOpen){e.preventDefault();open(formOpen.dataset.route||null);return;}
+    var gef=e.target.closest('[data-gef]');
+    if(gef&&!e.target.closest('a')){e.preventDefault();openStory(document.getElementById('gefStory'));return;}
+    var storyClose=e.target.closest('[data-story-close]');
+    if(storyClose){e.preventDefault();closeStory(storyClose.closest('.story'));return;}
+    var menu=document.getElementById('mobileMenu');
+    if(menu&&menu.hasAttribute('open')&&!e.target.closest('#mobileMenu'))menu.removeAttribute('open');
   });
+  document.querySelectorAll('.mobile-menu__panel a').forEach(function(a){a.addEventListener('click',function(){var m=document.getElementById('mobileMenu');if(m)m.removeAttribute('open')})});
+  var partner=document.querySelector('[data-gef]');
+  if(partner){partner.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&!e.target.closest('a')){e.preventDefault();openStory(document.getElementById('gefStory'))}})}
   document.getElementById('wzClose').addEventListener('click', close);
-  ovl.addEventListener('mousedown', function(e){ if(e.target===ovl) close(); });
+  ovl.addEventListener('click', function(e){ if(e.target===ovl) close(); });
+  document.querySelectorAll('.story').forEach(function(s){s.addEventListener('click',function(e){if(e.target===s)closeStory(s)})});
   document.addEventListener('keydown', function(e){
     if(e.key!=='Escape') return;
     var openPanel=document.querySelector('.story:not([hidden])');
